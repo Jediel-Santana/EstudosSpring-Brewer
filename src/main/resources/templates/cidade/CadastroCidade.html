@@ -1,0 +1,64 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/LayoutPadrao">
+	
+	<head>
+		<title>Cadastro de cidade</title>
+	</head>
+
+	
+	<body>
+		
+		
+		<section layout:fragment="conteudo">
+			
+			<div class="page-header">
+				<div class="container-fluid">
+					<h1>Cadastro de cidade</h1>
+				</div>
+			</div>
+			
+			
+			<div class="container-fluid">
+				<form th:object="${cidade}" class="form-vertical js-form-loading">
+					
+					<div class="row"> 
+						<div class="form-group col-sm-4">
+							<label>Estado</label>
+							<select class="form-control">
+								 <option>Selecione o estado</option>
+								 <option>Pernambuco</option>
+							</select>
+						</div>
+						
+						
+						<div class="form-group col-sm-8">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control">
+						</div>
+						
+					</div>
+				
+				
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Salvar">
+					</div>					
+					
+				</form>
+			</div>
+			
+		
+		
+		</section>
+		
+	
+	</body>
+	
+	
+</html>
