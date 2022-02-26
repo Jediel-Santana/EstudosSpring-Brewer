@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
@@ -27,6 +28,8 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
+import com.algaworks.brewer.controller.converter.CidadeConverter;
+import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 
@@ -81,7 +84,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
 		conversionService.addConverter(new EstiloConverter());
-
+		conversionService.addConverter(new CidadeConverter());
+		conversionService.addConverter(new EstadoConverter());
+		
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
 		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
 

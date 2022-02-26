@@ -171,49 +171,6 @@
 		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
 		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
 		<script th:src="@{/javascripts/vendors/handlebars.min-v4.7.7.js}"></script>
-		
-		<!--  
-		<script>
-			$(function(){
-				var settings = {
-						type: 'json',
-						filelimit: 1,
-						allow: '*.(jpg|jpeg|png)',
-						action: '/brewer/fotos',
-						complete: function(resposta){
-								var inputNomeFoto = $('input[name=foto]');
-								inputNomeFoto.val(resposta.nome);
-								var inputContentType = $('input[name=contentType]');
-								inputContentType.val(resposta.contentType);
-					
-								
-								var uploadDrop = $('#upload-drop');
-								var containerFotoCerveja = $('.js-container-foto-cerveja');
-								var htmlFotoCervejaTemplate = $('#foto-cerveja').html();
-								var template = Handlebars.compile(htmlFotoCervejaTemplate);
-								var htmlFotoCerveja = template({nomeFoto: resposta.nome})
-															
-								uploadDrop.addClass('hidden');
-								containerFotoCerveja.append(htmlFotoCerveja);
-
-								$('.js-remove-foto').on('click', function(){
-									$('.js-foto-cerveja').remove();
-									inputNomeFoto.val('');
-									inputContentType.val('');
-									uploadDrop.removeClass('hidden');
-									
-									});
-							
-							}
-				};
-				UIkit.uploadSelect($('#upload-select'), settings);
-				UIkit.uploadDrop($('#upload-drop'), settings);
-			
-
-				});
-			
-		</script>
-		-->
 	</th:block>
 </body>
 

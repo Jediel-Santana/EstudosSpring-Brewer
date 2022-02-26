@@ -22,6 +22,7 @@ import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
 import com.algaworks.brewer.repository.Cervejas;
+import com.algaworks.brewer.repository.Estados;
 import com.algaworks.brewer.repository.Estilos;
 import com.algaworks.brewer.repository.filter.CervejaFilter;
 import com.algaworks.brewer.service.CadastroCervejaService;
@@ -40,7 +41,7 @@ public class CervejasController {
 
 	@Autowired
 	private Cervejas cervejas;
-
+	
 	@GetMapping
 	public ModelAndView pesquisa(CervejaFilter cervejaFilter, BindingResult result, @PageableDefault(size = 2) Pageable pageable,
 			HttpServletRequest request) {
@@ -48,7 +49,7 @@ public class CervejasController {
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("origens", Origem.values());
-
+		
 		PageWrapper<Cerveja> pagina = new PageWrapper<>(cervejas.filtrar(cervejaFilter, pageable), request);
 		mv.addObject("pagina", pagina);
 
