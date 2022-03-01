@@ -54,7 +54,7 @@ public class EstilosController {
 		if (result.hasErrors()) {
 			return novo(estilo);
 		}
-
+		
 		try {
 			cadastroEstiloService.salvar(estilo);
 		} catch (NomeEstiloJaCadastradoException e) {

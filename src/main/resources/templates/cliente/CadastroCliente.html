@@ -115,13 +115,13 @@
 						<div class="form-group col-sm-4">
 							<label for="cidade">Cidade</label>
 							<div class="bw-field-action">
-								<input  type="hidden" th:value="*{endereco.cidade} != null ? *{endereco.cidade.codigo}" />
+								<input  type="hidden" th:value="*{endereco.cidade} != null ? *{endereco.cidade.codigo}" id="inputHiddenCidadeSelecionada" />
 								<select id="cidade" class="form-control" th:field="*{endereco.cidade}" th:attr="data-url=@{/cidades}">
 									
 								</select>
 								
 								<div class="bw-field-action__icon">
-									<img th:src="@{/images/mini-loading.gif}" style="display: none" class="js-icon-loading">
+									<img th:src="@{/images/mini-loading.gif}" style="display: none" class="js-img-loading">
 								</div>
 							</div>
 						</div>

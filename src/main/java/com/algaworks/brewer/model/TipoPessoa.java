@@ -1,9 +1,11 @@
 package com.algaworks.brewer.model;
 
+import java.io.Serializable;
+
 import com.algaworks.brewer.model.validation.CnpjGroup;
 import com.algaworks.brewer.model.validation.CpfGroup;
 
-public enum TipoPessoa {
+public enum TipoPessoa implements Serializable {
 	FISICA("Física", "CPF", "000.000.000-00", CpfGroup.class),
 	JURIDICA("Jurídica", "CNPJ", "00.000.000/0000-00", CnpjGroup.class);
 

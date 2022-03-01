@@ -9,13 +9,13 @@ public class EstadoConverter implements Converter<String, Estado> {
 
 	@Override
 	public Estado convert(String codigo) {
-		if(!StringUtils.isEmpty(codigo)) {
+		System.out.println("conversor estado");
+		if (!StringUtils.isEmpty(codigo)) {
 			Estado estado = new Estado();
 			estado.setCodigo(Long.valueOf(codigo));
-			
 			return estado;
 		}
-		
+
 		return null;
 	}
 

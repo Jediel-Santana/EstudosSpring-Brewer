@@ -9,7 +9,7 @@ Brewer.MascaraCep = (function(){
 	}
 	
 	MascaraCep.prototype.iniciar = function(){
-		this.inputCep.mask('00000-00');
+		this.inputCep.mask('00000-000');
 	}
 	
 	return MascaraCep;

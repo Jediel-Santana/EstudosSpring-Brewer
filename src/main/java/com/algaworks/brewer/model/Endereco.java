@@ -51,10 +51,39 @@ public class Endereco implements Serializable {
 	public Estado getEstado() {
 		return estado;
 	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setLogradouro(String logradouro) {
+		Logradouro = logradouro;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 
 	@Override
 	public String toString() {
 		return "Endereco [Logradouro=" + Logradouro + ", numero=" + numero + ", complemento=" + complemento + ", cep="
-				+ cep + ", cidade=" + cidade + "]";
+				+ cep + ", cidade=" + cidade + ", estado=" + estado + "]";
 	}
+	
 }

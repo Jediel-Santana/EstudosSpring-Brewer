@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.brewer.model.Cliente;
 import com.algaworks.brewer.model.TipoPessoa;
+import com.algaworks.brewer.repository.Clientes;
 import com.algaworks.brewer.repository.Estados;
 
 @Controller
@@ -20,6 +21,9 @@ public class ClientesController {
 	
 	@Autowired
 	private Estados estados;
+	
+	@Autowired
+	private Clientes clientes;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Cliente cliente) {
@@ -33,11 +37,12 @@ public class ClientesController {
 	@PostMapping("/novo")
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attribute) {
 		
-		System.out.println(cliente);
+		
 		if(result.hasErrors()) {
 			return novo(cliente);
 		}
 		
+		clientes.save(cliente);
 		attribute.addAttribute("mensagem", "Cliente cadastrado com sucesso!");
 		return new ModelAndView("redirect:/clientes/novo");
 	}

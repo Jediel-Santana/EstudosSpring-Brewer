@@ -50,7 +50,7 @@ public class Cliente implements Serializable {
 	
 	private String telefone;
 	
-	@Email
+	@Email(message = "E-mail inválido")
 	private String email;
 	
 	@Embedded

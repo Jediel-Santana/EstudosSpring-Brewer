@@ -44,7 +44,15 @@ public class Cidade implements Serializable {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

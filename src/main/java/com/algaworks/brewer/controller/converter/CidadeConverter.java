@@ -9,14 +9,13 @@ public class CidadeConverter implements Converter<String, Cidade> {
 
 	@Override
 	public Cidade convert(String codigo) {
-		System.out.println("conversor de cidade");
-		if(!StringUtils.isEmpty(codigo)) {
+		System.out.println("conversor cidade");
+		if (!StringUtils.isEmpty(codigo)) {
 			Cidade cidade = new Cidade();
 			cidade.setCodigo(Long.valueOf(codigo));
-			System.out.println(cidade);
 			return cidade;
 		}
-		
+
 		return null;
 	}
 
