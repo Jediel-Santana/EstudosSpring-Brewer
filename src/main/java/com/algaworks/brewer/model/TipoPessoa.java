@@ -14,13 +14,13 @@ public enum TipoPessoa implements Serializable {
 	private String mascara;
 	private Class<?> grupo;
 
- 	TipoPessoa(String descricao, String documento, String mascara, Class<?> grupo) {
+	TipoPessoa(String descricao, String documento, String mascara, Class<?> grupo) {
 		this.descricao = descricao;
 		this.documento = documento;
 		this.mascara = mascara;
 		this.grupo = grupo;
 	}
- 	
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -36,5 +36,9 @@ public enum TipoPessoa implements Serializable {
 	public Class<?> getGrupo() {
 		return grupo;
 	}
-	
+
+	public static String getCpfSemFormatacao(String cpfOuCnpj) {
+		return cpfOuCnpj.replaceAll("\\.|-|/", "");
+	}
+
 }

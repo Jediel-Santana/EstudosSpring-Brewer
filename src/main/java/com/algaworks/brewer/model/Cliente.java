@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,40 +25,45 @@ import com.algaworks.brewer.model.validation.ClienteGroupsSequenceProvider;
 import com.algaworks.brewer.model.validation.CnpjGroup;
 import com.algaworks.brewer.model.validation.CpfGroup;
 
-
 @Entity
 @Table(name = "cliente")
 @GroupSequenceProvider(ClienteGroupsSequenceProvider.class)
 public class Cliente implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
-	
+
 	@NotNull(message = "Tipo pessoa é obrigatório")
 	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_pessoa")
 	private TipoPessoa tipoPessoa;
-	
+
 	@NotBlank(message = "CPF/CNPJ é obrigatório")
 	@CPF(groups = CpfGroup.class)
 	@CNPJ(groups = CnpjGroup.class)
 	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
-	
+
 	private String telefone;
-	
+
 	@Email(message = "E-mail inválido")
 	private String email;
-	
+
 	@Embedded
 	private Endereco endereco;
-	
-	
+
+	@PrePersist
+	@PreUpdate
+	private void prePersistpreUpdate() {
+		this.cpfOuCnpj = getCpfOuCnpjSemFormatacao();
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -143,5 +150,9 @@ public class Cliente implements Serializable {
 		return "Cliente [codigo=" + codigo + ", nome=" + nome + ", tipoPessoa=" + tipoPessoa + ", cpfOuCnpj="
 				+ cpfOuCnpj + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco + "]";
 	}
-	
+
+	public String getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.getCpfSemFormatacao(this.cpfOuCnpj);
+	}
+
 }
