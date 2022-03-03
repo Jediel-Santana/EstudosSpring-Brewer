@@ -5,60 +5,121 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/LayoutPadrao"
 	xmlns:brewer="http://www.algaworks.com">
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>Cadastro de cliente</title>
-	
-	</head>
-	
-	
-	
-	<body>
-		
-		<section layout:fragment="conteudo">
-			
-			<div class="page-header">
+
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de cliente</title>
+
+</head>
+
+
+
+<body>
+
+	<section layout:fragment="conteudo">
+
+		<div class="page-header">
+
+			<div class="row">
+
 				<div class="container-fluid">
-					<h1>
-						Cadastro de cliente
-					</h1>
-				</div>
-			</div>
-			
-	
-			<div class="container-fluid">
-				<form method="GET" th:object="${clienteFilter}" class="form-vertical  js-form-loading" th:action="@{/clientes}">
-					
-					<brewer:message />
-					
-					<div class="row">
-						<div class="form-group col-sm-12">
-							<label class="control-label" for="nome">Nome</label>
-							<input type="text" id="nome" name="nome" class="form-control" th:field="*{nome}"/>
+					<div class="col-sm-10">
+						<h1>Cadastro de cliente</h1>
+					</div>
+
+
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn  btn-default" th:href="@{/clientes/novo}"> <i
+								class="glyphicon  glyphicon-plus-sign"></i> <span
+								class="hidden-xs  hidden-sm">Novo cliente</span>
+							</a>
 						</div>
 					</div>
-					
-					
-					<div class="row">
-						<div class="form-group col-sm-8">
-							<label class="control-label" for="CpfouCnpj">CPF/CNPJ</label>
-							<input id="CpfouCnpj" type="text" class="form-control" th:field="*{cpfOuCnpj}">
-						</div>					
-					</div>
-					
-					
-					<div class="form-group">
-						<input type="submit" value="Pesquisar" id="pesquisarCliente" class="btn btn-primary"/>
-					</div>
-					
-				</form>
+				</div>
 			</div>
-		</section>	
+		</div>
+
+
+		<div class="container-fluid">
+			<form method="GET" th:object="${clienteFilter}"
+				class="form-vertical  js-form-loading" th:action="@{/clientes}">
+
+				<brewer:message />
+
+				<div class="row">
+					<div class="form-group col-sm-12">
+						<label class="control-label" for="nome">Nome</label> <input
+							type="text" id="nome" name="nome" class="form-control"
+							th:field="*{nome}" />
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="form-group col-sm-8">
+						<label class="control-label" for="CpfouCnpj">CPF/CNPJ</label> <input
+							id="CpfouCnpj" type="text" class="form-control"
+							th:field="*{cpfOuCnpj}">
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<input type="submit" value="Pesquisar" id="pesquisarCliente"
+						class="btn btn-primary" />
+				</div>
+
+			</form>
+			<div class="table-responsive  bw-tabela-simples">
+				<table class="table  table-hover">
+					<thead>
+						<tr>
+							<th class="table-clientes-col-nome"><brewer:order
+									page="${pagina}" field="nome" text="Nome" /></th>
+							<th class="table-clientes-col-tipo-pessoa"><brewer:order
+									page="${pagina}" field="tipoPessoa" text="Tipo Pessoa" /></th>
+							<th class="table-clientes-col-cpf-cnpj">CPF/CNPJ</th>
+							<th class="table-clientes-col-telefone">Telefone</th>
+							<th class="table-clientes-col-cidade-estado">Cidade/Estado</th>
+							<th class="table-col-acoes"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="cliente : ${pagina.conteudo}">
+							<td th:text="${cliente.nome}"></td>
+							<td class="text-center" th:text="${cliente.tipoPessoa.descricao}">Física</td>
+							<td class="text-right" th:text="${cliente.cpfOuCnpj}">111.111.111-11</td>
+							<td class="text-right" th:text="${cliente.telefone}">(11)
+								99999-9999</td>
+							<td class="text-right"
+								th:text="${cliente.endereco.nomeCidadeSiglaEstado}"></td>
+							<td class="text-center"><a class="btn  btn-link  btn-xs"
+								title="Editar"> <i class="glyphicon glyphicon-pencil"></i>
+							</a> <a class="btn  btn-link  btn-xs" title="Excluir"> <i
+									class="glyphicon glyphicon-remove"></i>
+							</a></td>
+						</tr>
+						<tr th:if="${pagina.vazia}">
+							<td colspan="5">Nenhum cliente encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-sm-12 text-center">
+
+				<brewer:pagination page="${pagina}" />
+
+			</div>
+
+		</div>
+	</section>
 
 	<th:block layout:fragment="javascript-extra">
 	</th:block>
 
-	</body>
+</body>
 
 </html>

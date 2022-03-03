@@ -6,59 +6,78 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/LayoutPadrao">
-	
-	<head>
-		<title>Cadastro de cidade</title>
-	</head>
+	layout:decorate="layout/LayoutPadrao"
+	xmlns:brewer="http://www.algaworks.com">
 
-	
-	<body>
-		
-		
-		<section layout:fragment="conteudo">
-			
-			<div class="page-header">
-				<div class="container-fluid">
-					<h1>Cadastro de cidade</h1>
+<head>
+<title>Cadastro de cidade</title>
+</head>
+
+
+<body>
+
+
+	<section layout:fragment="conteudo">
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-10">
+						<h1>Cadastro de cidade</h1>
+					</div>
+
+
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn btn-default" th:href="@{cidades/}"> <i
+								class="glyphicon  glyphicon-plus-sign"></i> <span
+								class="hidden-xs  hidden-sm">Pesquisa cidade</span>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			
-			<div class="container-fluid">
-				<form th:object="${cidade}" class="form-vertical js-form-loading">
-					
-					<div class="row"> 
-						<div class="form-group col-sm-4">
-							<label>Estado</label>
-							<select class="form-control">
-								 <option>Selecione o estado</option>
-								 <option>Pernambuco</option>
-							</select>
-						</div>
-						
-						
-						<div class="form-group col-sm-8">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control">
-						</div>
-						
+		</div>
+
+
+		<div class="container-fluid">
+			<form method="post" th:object="${cidade}"
+				class="form-vertical js-form-loading">
+				<brewer:message />
+
+
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label>Estado</label> <select class="form-control"
+							th:field="*{estado}">
+							<option value="">Selecione o estado</option>
+							<option th:each="estado : ${estados}" th:text="${estado.nome}"
+								th:value="${estado.codigo}"></option>
+						</select>
 					</div>
-				
-				
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Salvar">
-					</div>					
-					
-				</form>
-			</div>
-			
-		
-		
-		</section>
-		
-	
-	</body>
-	
-	
+
+
+					<div class="form-group col-sm-8 bw-required">
+						<label for="nome">Nome</label> <input th:field="*{nome}"
+							type="text" class="form-control">
+					</div>
+
+				</div>
+
+
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Salvar">
+				</div>
+
+			</form>
+		</div>
+
+
+
+	</section>
+
+
+</body>
+
+
 </html>
