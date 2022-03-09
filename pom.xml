@@ -198,7 +198,7 @@
 			<version>${mysql-connector.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
+ 
 		<!-- SPRING DATA -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
