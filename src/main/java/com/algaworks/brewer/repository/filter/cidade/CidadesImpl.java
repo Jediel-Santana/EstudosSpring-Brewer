@@ -19,7 +19,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.algaworks.brewer.model.Cidade;
-import com.algaworks.brewer.repository.CidadesQueries;
 import com.algaworks.brewer.repository.filter.CidadeFilter;
 import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.algaworks.brewer.model.Cidade;
 import com.algaworks.brewer.model.Estado;
+import com.algaworks.brewer.repository.filter.cidade.CidadesQueries;
 
 @Repository
 public interface Cidades extends JpaRepository<Cidade, Long>, CidadesQueries {

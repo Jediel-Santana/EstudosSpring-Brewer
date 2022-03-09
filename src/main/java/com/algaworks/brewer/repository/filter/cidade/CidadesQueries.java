@@ -1,4 +1,4 @@
-package com.algaworks.brewer.repository;
+package com.algaworks.brewer.repository.filter.cidade;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
