@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 
-@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "senhaConfirmacao")
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "senhaConfirmacao", message="As senhas não coincidem")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -108,6 +108,14 @@ public class Usuario implements Serializable {
 
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
+	}
+
+	public String getSenhaConfirmacao() {
+		return senhaConfirmacao;
+	}
+
+	public void setSenhaConfirmacao(String senhaConfirmacao) {
+		this.senhaConfirmacao = senhaConfirmacao;
 	}
 
 }
