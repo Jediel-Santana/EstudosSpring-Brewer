@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.ConstraintValidatorContext.ConstraintViolationBuilder;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.stereotype.Component;
 
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 
@@ -30,12 +29,12 @@ public class confirmacaoAtributoValidator implements ConstraintValidator<Atribut
 			Object valorAtributo = BeanUtils.getProperty(value, this.atributo);
 			Object valorAtributoConfirmacao = BeanUtils.getProperty(value, this.atributoConfirmacao);
 
-			valido = ambosSaoNull(valorAtributo, valorAtributoConfirmacao) && ambosSaoIguais(valorAtributo, valorAtributoConfirmacao);
+			valido = ambosSaoNull(valorAtributo, valorAtributoConfirmacao) || ambosSaoIguais(valorAtributo, valorAtributoConfirmacao);
 		} catch (Exception e) {
 			throw new RuntimeException("Erro recuperando valores dos atributos", e);
 		}
-		
-		if(!valido) {
+
+		if (!valido) {
 			context.disableDefaultConstraintViolation();
 			String message = context.getDefaultConstraintMessageTemplate();
 			ConstraintViolationBuilder violationBuilder = context.buildConstraintViolationWithTemplate(message);
@@ -46,7 +45,7 @@ public class confirmacaoAtributoValidator implements ConstraintValidator<Atribut
 	}
 
 	private boolean ambosSaoNull(Object valorAtributo, Object valorAtributoConfirmacao) {
-		return Objects.isNull(valorAtributo) && Objects.isNull(valorAtributoConfirmacao); 
+		return Objects.isNull(valorAtributo) && Objects.isNull(valorAtributoConfirmacao);
 	}
 
 	private boolean ambosSaoIguais(Object valorAtributo, Object valorAtributoConfirmacao) {

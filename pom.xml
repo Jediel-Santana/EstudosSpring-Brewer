@@ -49,14 +49,17 @@
 
 		<!-- JACKSON -->
 		<jackson-core.version>2.13.1</jackson-core.version>
-		
+
 		<thumbnailator.version>0.4.8</thumbnailator.version>
-		
+
 		<!-- Cache - Guava -->
 		<guava.version>19.0</guava.version>
-		
+
 		<!-- Apache Bean Utils -->
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+		
+		<!-- Spring Security Web -->
+		<spring-security-web.version>5.6.2</spring-security-web.version>
 	</properties>
 
 	<build>
@@ -203,7 +206,7 @@
 			<version>${mysql-connector.version}</version>
 			<scope>provided</scope>
 		</dependency>
- 
+
 		<!-- SPRING DATA -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -225,7 +228,7 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>${thumbnailator.version}</version>
 		</dependency>
-		
+
 		<!-- Cache - Guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -233,23 +236,29 @@
 			<version>${guava.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Spring Context Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Apache Bean Utils -->
 		<dependency>
-    		<groupId>commons-beanutils</groupId>
-    		<artifactId>commons-beanutils</artifactId>
-    		<version>${commons-beanutils.version}</version>
-    		<scope>compile</scope>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>
+			<scope>compile</scope>
 		</dependency>
-	
-	
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security-web.version}</version>
+		</dependency>
+
+
 	</dependencies>
 
 </project>

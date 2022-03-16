@@ -3,6 +3,7 @@ package com.algaworks.brewer.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,14 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 
-@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "senhaConfirmacao", message="As senhas não coincidem")
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "senhaConfirmacao", message = "As senhas não coincidem")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -44,7 +45,7 @@ public class Usuario implements Serializable {
 	@Transient
 	private String senhaConfirmacao;
 
-	@NotNull(message = "Selecione pelo menos um grupo")
+	@Size(min = 1, message = "Selecione pelo menos um grupo")
 	@ManyToMany
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	private List<Grupo> grupos;
@@ -53,6 +54,10 @@ public class Usuario implements Serializable {
 
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
+
+	public boolean isNovo() {
+		return Objects.isNull(this.codigo);
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -116,6 +121,12 @@ public class Usuario implements Serializable {
 
 	public void setSenhaConfirmacao(String senhaConfirmacao) {
 		this.senhaConfirmacao = senhaConfirmacao;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", senhaConfirmacao=" + senhaConfirmacao + ", grupos=" + grupos + ", ativo="
+				+ ativo + ", dataNascimento=" + dataNascimento + "]";
 	}
 
 }

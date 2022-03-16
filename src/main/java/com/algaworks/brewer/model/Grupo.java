@@ -2,6 +2,7 @@ package com.algaworks.brewer.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,6 +51,28 @@ public class Grupo implements Serializable {
 
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grupo other = (Grupo) obj;
+		return Objects.equals(codigo, other.codigo);
+	}
+
+	@Override
+	public String toString() {
+		return "Grupo [nome=" + nome + "]";
 	}
 
 }

@@ -39,6 +39,7 @@ import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.CidadeConverter;
 import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
+import com.algaworks.brewer.controller.converter.GrupoConverter;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import com.google.common.cache.CacheBuilder;
 
@@ -101,6 +102,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		conversionService.addConverter(new EstiloConverter());
 		conversionService.addConverter(new CidadeConverter());
 		conversionService.addConverter(new EstadoConverter());
+		conversionService.addConverter(new GrupoConverter());
 
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
 		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
@@ -109,7 +111,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		conversionService.addFormatterForFieldType(Integer.class, integerFormatter);
 
 		DateTimeFormatterRegistrar formatterRegistrar = new DateTimeFormatterRegistrar();
-		formatterRegistrar.setDateFormatter(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		formatterRegistrar.setDateFormatter(DateTimeFormatter.ISO_DATE);
 		formatterRegistrar.registerFormatters(conversionService);
 
 		return conversionService;
