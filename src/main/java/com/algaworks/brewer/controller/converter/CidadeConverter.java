@@ -1,7 +1,7 @@
 package com.algaworks.brewer.controller.converter;
 
-import org.apache.groovy.parser.antlr4.util.StringUtils;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Cidade;
 

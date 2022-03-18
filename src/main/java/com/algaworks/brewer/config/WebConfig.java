@@ -17,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
@@ -29,6 +28,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -43,7 +43,7 @@ import com.algaworks.brewer.controller.converter.GrupoConverter;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import com.google.common.cache.CacheBuilder;
 
-import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
 @ComponentScan(basePackageClasses = CervejasController.class)
@@ -64,6 +64,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
 		resolver.setCharacterEncoding("UTF-8");
+		resolver.setContentType("text/html; charset=UTF-8");
 		return resolver;
 	}
 
@@ -74,6 +75,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.setTemplateResolver(templateResolver());
 		engine.addDialect(new LayoutDialect());
 		engine.addDialect(new BrewerDialect());
+		engine.addDialect(new SpringSecurityDialect());
 		return engine;
 	}
 
@@ -82,6 +84,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		resolver.setApplicationContext(applicationContext);
 		resolver.setPrefix("classpath:/templates/");
 		resolver.setSuffix(".html");
+		resolver.setCharacterEncoding("UTF-8");
 		resolver.setTemplateMode(TemplateMode.HTML);
 		return resolver;
 	}
@@ -89,11 +92,6 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-	}
-
-	@Override
-	public void addFormatters(FormatterRegistry registry) {
-
 	}
 
 	@Bean

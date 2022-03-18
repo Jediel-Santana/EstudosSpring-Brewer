@@ -10,20 +10,22 @@
 
 	<title>Brewer</title>
 
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/brewer.css}"/>
 	
-	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 	
 	<link rel="shortcut icon" th:href="@{/images/favicon.png}" />
 	
 </head>
 
 <body>
-
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+	<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}">
+	
+	
 	<div class="aw-layout-page">
 		
 		<div th:replace="layout/fragments/BarraNavegacao :: navbar"></div>
@@ -41,9 +43,9 @@
 	<script th:src="@{/javascripts/vendors/jquery.maskMoney.min.js}"></script>
 	<script th:src="@{/javascripts/vendors/jquery.mask.min.js}"></script>
 
-	<script th:src="@{/javascripts/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
 	<script th:src="@{/javascripts/vendors/bootstrap-datepicker.min.js}"></script>
-	
+	<script th:src="@{/javascripts/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
+		
 	<script th:src="@{/javascripts/brewer.js}"></script>
 	
 	

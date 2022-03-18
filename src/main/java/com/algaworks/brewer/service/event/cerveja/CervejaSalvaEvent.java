@@ -1,6 +1,6 @@
 package com.algaworks.brewer.service.event.cerveja;
 
-import org.apache.groovy.parser.antlr4.util.StringUtils;
+import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Cerveja;
 

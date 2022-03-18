@@ -45,7 +45,7 @@ E<!DOCTYPE html>
 		<div class="container-fluid">
 
 				 
-			<form method="post" th:object="${cerveja}" class="form-vertical  js-form-loading">
+			<form method="post" th:object="${cerveja}" th:action="@{/cervejas/novo}" class="form-vertical  js-form-loading">
 				<brewer:message />
 				
 				<div class="row">

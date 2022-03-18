@@ -49,15 +49,32 @@ Brewer.MaskDate = (function(){
 	}
 	
 	MaskDate.prototype.enable = function() {
-		this.inputDate.mask('00/00/0000');
 		this.inputDate.datepicker({
 			orientation: 'bottom',
 			language: 'pt-BR',
 			autoclose: true
 		});
-	}``
+	}
 	
 	return MaskDate;
+}());
+
+Brewer.Security = (function(){
+	
+	function Security(){
+		this.token = $('input[name=_csrf]').val();
+		this.header = $('input[name=_csrf_header]').val();
+	}
+	
+	Security.prototype.enable = function(){
+		$( document ).ajaxSend(function( event, jqxhr, settings ) {
+			console.log(this.header);
+			console.log(this.token);
+			jqxhr.setRequestHeader(this.header, this.token);
+		}.bind(this));
+	}
+		
+	return Security;
 }());
 
 $(function() {
@@ -69,4 +86,7 @@ $(function() {
 	
 	var maskDate = new Brewer.MaskDate();
 	maskDate.enable();	
+	
+	var security = new Brewer.Security();
+	security.enable();
 });

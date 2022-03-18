@@ -21,14 +21,14 @@
 			
 		<div class="page-header">
 			<div class="container-fluid">
-				<h1>Cadatro de Usuário</h1>	
+				<h1>Cadastro de Usuário</h1>	
 			</div>
 		</div>
 		
 		
 		<div class="container-fluid">
 		
-			<form method="post" th:object="${usuario}" class="form-vertical js-form-loading" >
+			<form method="post" th:action="@{/usuarios/novo}" th:object="${usuario}" class="form-vertical js-form-loading" >
 				<brewer:message />
 				
 				<div class="row">
