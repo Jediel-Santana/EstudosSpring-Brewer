@@ -9,31 +9,24 @@ import javax.persistence.Transient;
 
 @Embeddable
 public class Endereco implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private String Logradouro;
-	
+
 	private String numero;
-	
+
 	private String complemento;
-	
+
 	private String cep;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_cidade")
 	private Cidade cidade;
-	
+
 	@Transient
 	private Estado estado;
-	
-	
-	public String nomeCidadeSiglaEstado() {
-		if(this.cidade != null)
-			return this.getCidade().getNome() + "/" + this.estado.getSigla();
-		return null;
-	}
-	
+
 	public String getLogradouro() {
 		return Logradouro;
 	}
@@ -52,13 +45,12 @@ public class Endereco implements Serializable {
 
 	public Cidade getCidade() {
 		return cidade;
-	}	
-	
+	}
 
 	public Estado getEstado() {
 		return estado;
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -87,10 +79,16 @@ public class Endereco implements Serializable {
 		this.estado = estado;
 	}
 
+	public String getNomeCidadeSiglaEstado() {
+		if (this.cidade != null)
+			return this.getCidade().getNome() + "/" + this.estado.getSigla();
+		return "";
+	}
+
 	@Override
 	public String toString() {
 		return "Endereco [Logradouro=" + Logradouro + ", numero=" + numero + ", complemento=" + complemento + ", cep="
 				+ cep + ", cidade=" + cidade + ", estado=" + estado + "]";
 	}
-	
+
 }

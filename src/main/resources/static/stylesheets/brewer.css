@@ -122,15 +122,53 @@
 	width: 80px;
 }
 
-/*
-###################
-# CUSTOMIZAÇÃO DE COMPONENTES
-###################
-*/
-.checkbox input[type="checkbox"]:checked + input + label::after {
-	font-family: 'FontAwesome';
-	content: "\f00c"
+/* Colunas - Pesquisa de Clientes */
+.table-clientes-col-nome {
+	
 }
 
+.table-clientes-col-tipo-pessoa {
+	width: 120px;
+	text-align: center;
+}
 
+.table-clientes-col-cpf-cnpj {
+	width: 140px;
+	text-align: right;
+}
 
+.table-clientes-col-telefone {
+	width: 140px;
+	text-align: right;
+}
+
+.table-clientes-col-cidade-estado {
+	width: 140px;
+	text-align: right;
+}
+
+/* Colunas - Pesquisa de cidades */
+.table-cidades-col-nome {
+	
+}
+
+.table-cidades-col-estado {
+	width: 140px;
+	text-align: right;
+}
+
+/* Colunas - Pesquisa de usuários */
+.table-usuarios-col-status {
+	width: 30px;
+}
+
+/*
+######################################
+# CUSTOMIZAÇÃO DE COMPONENTES
+######################################
+*/
+
+.checkbox input[type="checkbox"]:checked + input + label::after {
+    font-family: 'FontAwesome';
+    content: "\f00c"; 
+}

@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 
-	<th:block th:fragment="pagination (pagina)">
-		<nav>
+	<th:block th:fragment="pagination (pagina)" >
+		<nav th:if="${not pagina.vazia}">
 			<ul class="pagination pagination-sm" th:with="paginaAtual=${pagina.atual}">
 				<li th:class="${pagina.primeira} ? disabled">
 					<a th:href="${pagina.urlParaPagina(pagina.atual - 1)}" th:remove="${pagina.primeira} ? tag"><span>&laquo;</span></a>

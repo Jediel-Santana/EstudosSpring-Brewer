@@ -9,7 +9,7 @@
 	driverClass="com.mysql.cj.jdbc.Driver"
 	jdbcUrl="jdbc:mysql://localhost/brewer?useSSL=false"
 	user="root"
-	password="jediel123"
+	password="root"
 	initialPoolSize="5"
 	maxPoolSize="5"
 	minPoolSize="5"
